@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+<script src="/static/js/jquery-1.12.4.min.js"></script>
+<head>
+<link rel="stylesheet" href="{{ url_for ('static', filename='css/main.css') }}">
+</HEAD>
+<body>
+	<div id="css_header">
+		<div class="inner">
+			<div id="logo">
+			<img src="{{ url_for ('static', filename='images/logo.gif') }}" ALT="在庫管理">
+			</div>
+		</div>
+	 </div>
+	 	 
+	 <div id="css_topicpath">
+	 <A href="{{ url_for ('login') }}">トップページ</A> ＞  {{vntGname}}
+	 </div>
+
+<FORM NAME="frmSubmit" ACTION="/eh10/eh{{ vntGid }}" METHOD="post" autocomplete="off" >
+
+	<TABLE width="445">
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【コード】
+	<INPUT ID="Id_ItemCd" TYPE="text" NAME="Rq_ItemCd" SIZE="4" MAXLENGTH="6" VALUE="{{  res[0] }}" style="font-size: 30px;" tabindex="1">
+	<div>
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【名称】
+	<INPUT TYPE="text" NAME="Rq_ItemNm" SIZE="18" MAXLENGTH="40" VALUE="{{  res[1] }}" style="font-size: 30px;ime-mode:active" tabindex="2">
+	<div>
+	</td>
+	</tr>
+
+	<tr>	
+	<td>
+	<div style="font-size: 30px;color:blue">【在庫数】
+	<INPUT TYPE="text" NAME="Rq_ItemSuu" SIZE="5" MAXLENGTH="4" VALUE="{{  res[2] }}" style="font-size: 30px;" tabindex="5">
+	<div>
+	</td>
+	</tr>
+	
+	<tr>	
+	<td>
+	<div style="font-size: 30px;color:blue">【下限数】
+	<INPUT TYPE="text" NAME="Rq_ItemMinSuu" SIZE="5" MAXLENGTH="4" VALUE="{{  res[3] }}" style="font-size: 30px;" tabindex="6">
+	<div>
+	</td>
+	</tr>
+	
+	<tr>	
+	<td>
+	<div style="font-size: 30px;color:blue">【棚番号】
+	<INPUT TYPE="text" NAME="Rq_ItemTanaCd" SIZE="12" MAXLENGTH="20" VALUE="{{  res[4] }}" style="font-size: 30px;" tabindex="8">
+	<div>
+	</td>
+	</tr>
+
+	<tr>	
+	<td>
+	<div style="font-size: 30px;color:blue">【備考】
+	<INPUT TYPE="text" NAME="Rq_ItemBikou" SIZE="18" MAXLENGTH="200" VALUE="{{  res[5] }}" style="font-size: 30px;" tabindex="8">
+	<div>
+	</td>
+	</tr>
+	</TABLE>
+	
+	<p>
+	<BUTTON TYPE="BUTTON" class="updatebutton" onClick="add_submit();" tabindex="16">更新</BUTTON>
+	</p>
+	<input type="hidden" NAME="EID" VALUE="{{vnt_id}}">
+	<input type="hidden" NAME="EADDCHK" VALUE="">
+	<INPUT id="id_ItemZaiSuu" type="hidden" NAME="Rq_ItemZaiSuu" >
+</FORM>
+<SCRIPT LANGUAGE="JavaScript">
+	/////////////////////////////////////////////////////////////
+	//フォームイニシャライズ
+	/////////////////////////////////////////////////////////////
+	//window.parent.frames('search').document.forms['frmSubmit'].elements('Rq_EigyouCD').focus();
+	//function onLoad(){
+	//	document.forms['frmSubmit'].elements('Rq_ItemCd').focus();
+	//}
+	/////////////////////////////////////////////////////////////
+	//更新、キャンセルボタンイベント
+	/////////////////////////////////////////////////////////////
+	
+	function page_submit(){
+	
+		if (document.forms['frmSubmit'].Rq_ItemCd.value=="off"){
+				document.forms['frmSubmit'].EADDCHK.value="off";
+				document.forms['frmSubmit'].submit();
+		}
+	}
+	
+	function add_submit(){
+		//alert("test");
+		if (confirm("登録してもよろしいですか？")){
+			//if ( jf_FormInputChk() != false ){
+				document.forms['frmSubmit'].EADDCHK.value="add";
+				document.forms['frmSubmit'].submit();
+			//}
+		}
+	}
+
+	function update_submit(){
+		if (confirm("更新してもよろしいですか？")){
+			if ( jf_FormInputChk() != false ){
+				document.forms['frmSubmit'].EADDCHK.value="update";
+				document.forms['frmSubmit'].submit();
+			}
+		}
+	}
+		
+	function reset_submit(){
+		document.forms['frmSubmit'].EADDCHK.value="reset";
+		document.forms['frmSubmit'].Rq_ItemCd.value==""
+		document.forms['frmSubmit'].submit();
+	}
+	
+	/////////////////////////////////////////////////////////////
+	//フォーム項目入力チェック
+	/////////////////////////////////////////////////////////////
+	function jf_FormInputChk(){
+		
+		var ret;
+	
+		if (jpf_FormInputChk("Rq_ItemCd"	,"X",20,1,"アイテムコード")==false){return false;}
+		if (jpf_FormInputChk("Rq_ItemSuu"	,"N",0,1,"アイテム数")==false){return false;}
+	}
+	
+	function setNextFocus(obj){
+		var vntItemSuu;
+		var vntItemZaiSuu;
+	
+		vntItemSuu = document.forms['frmSubmit'].Rq_ItemSuu.value;
+		vntItemZaiSuu = document.forms['frmSubmit'].Rq_ItemZaiSuu.value;
+		//alert("here3!!");
+		if(obj.value.length >= obj.maxLength){
+			if (obj.id == "id_ItemRCd"){
+				if (document.forms['frmSubmit'].Rq_ItemCd.value == document.forms['frmSubmit'].Rq_ItemRCd.value && vntItemSuu.length!=0){
+					if (Number(vntItemSuu) > Number(vntItemZaiSuu)){
+						alert("出庫数が在庫数を超えてます。\n　【ENT】ボタンを押して下さい");
+						document.forms['frmSubmit'].elements['Rq_ItemSuu'].value= '';
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].value='';
+						document.forms['frmSubmit'].elements['Rq_ItemSuu'].focus();
+						return false;
+					} else {
+						add_submit();
+					}
+				} else {
+					if (vntItemSuu.length == 0){
+						alert("出庫数を入力して下さい。\n　【ENT】ボタンを押して下さい");
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].value='';
+						document.forms['frmSubmit'].elements['Rq_ItemSuu'].focus();
+						return false;
+					} else {
+						alert("アイテムコードが一致していません。\n　【ENT】ボタンを押して下さい");
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].focus();
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].value='';
+						return false;
+					}
+				}
+			}
+			var es = document.frmSubmit.elements;
+			for(var i=0;i<es.length;i++){
+				if(es[i] == obj){
+					es[i+1].focus();
+					break;
+				}
+			}
+		}
+	}
+	
+	/////////////////////////////////////////////////////////////
+	//ファンクション定義
+	/////////////////////////////////////////////////////////////
+	//共通ファンクションインクルード
+	
+	jQuery(function($){
+		$('#id_ItemCd').focus();
+		// アイテム名称
+		$('#id_ItemCd').change(function(){
+			$.ajax({
+    			type: "POST",
+    			url: "/requestM70",
+    			data: {Rq_ItemCd : $(this).val()},
+    			success: function(response) {
+					
+					$('#id_ItemNm').text(null);
+					$('#id_ItemZaiSuu').val(null);
+					$('#id_ItemZaikoSuu').text(null);
+					$('#id_ItemTanaCd').text(null);
+					$('#id_ItemDelFlg').text(null);
+					if(response.itemNm==[]){
+						$('#id_ItemCd').focus();
+						alert("該当するアイテムコードがありません。\n　【ENT】ボタンを押して下さい");
+						reset_submit();
+					}
+					if(response.itemDelFlg!=0){
+						$('#id_ItemCd').focus();
+						alert("このアイテムは使用期限切れです。\n　【ENT】ボタンを押して下さい");
+						$('#id_ItemCd').val(null);
+						//reset_submit();
+					} else {
+						$('#id_ItemNm').text(response.itemNm);
+						$('#id_ItemZaiSuu').val(response.itemSuu);
+						$('#id_ItemZaikoSuu').text(response.itemSuu);
+						$('#id_ItemTanaCd').text(response.itemTanaCd);
+						$('#id_ItemDelFlg').text(response.itemDelFlg);
+					}
+					
+			//	
+			//	if(json.itemSession==[]){
+			//		alert("接続が切れました　再ログインが必要です。\n　【ENT】ボタンを押して下さい");
+			//		reset_submit();
+			//	}
+
+
+					//alert(response.itemNm);
+    			}
+			}); 
+		
+			//});
+		});
+	
+	});
+</script>
+<script src={{ url_for ('static', filename='js/jsfunc.js' )}}></script>
+</body>
+</html>
