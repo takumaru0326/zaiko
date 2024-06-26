@@ -348,4 +348,4 @@ def requestM70():
                      })
  
 if __name__ == "__main__":
-    app.run(debug=True, host='192.168.10.234', port=8080, threaded=True)  
+    app.run(debug=True, host='127.0.0.1', port=8080, threaded=True)  
