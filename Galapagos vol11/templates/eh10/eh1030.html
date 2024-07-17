@@ -1,0 +1,47 @@
+{% extends 'basetmp.html' %}
+{% block main %}
+
+	<div id="css_topicpath">
+		<A href="{{ url_for ('login') }}">トップページ</A> ＞  {{vntGname}}
+	</div>
+ 
+	<FORM NAME="frmSubmit" ACTION="eh{{ vntGid }}" METHOD="get" autocomplete="off">
+		<div class="search">
+			<INPUT id="id_ew" TYPE="TEXT" NAME="Rq_ew" SIZE="8" MAXLENGTH="50" VALUE="{{ vnt_ew }}" style="font-size: 30px;">
+			<button type="submit" value="register"  class="addbutton" style="font-size:150%;width:130px">検索</button>
+		
+			<INPUT TYPE="HIDDEN" NAME="id" VALUE="">
+			<INPUT TYPE="HIDDEN" NAME="EADDCHK" VALUE="">
+		</div>
+	</FORM>
+
+	<div id="my_contents">
+		{% include "pagen.html" %}
+
+		<div id="mymain">
+		<div class="contents">
+		<table>
+    	<TR>
+		<TH NOWRAP width="250">アイテム名</TH> 
+		<TH NOWRAP width="50">在庫数</TH> 
+		<TH NOWRAP width="150">棚番号</TH> 
+		</TR>
+	
+		{% for row in res %}
+		<TR>
+		<TD style="font-size: 26px;">({{row[0]}}）{{row[1]}}</TD>
+		<TD style="font-size: 20px;">{{row[2]}}</TD>
+		<TD style="font-size: 26px;">{{row[3]}}</TD>
+		</TR>
+		{% endfor %}
+	
+		</table>
+		</div>
+	</div>
+
+	<script LANGUAGE="JavaScript">
+	jQuery(function($){
+		$('#id_ew').focus();
+	});
+	</script>
+{% endblock %}
