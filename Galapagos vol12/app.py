@@ -478,7 +478,6 @@ def eh10WU_get():
     vntGname =res[0]
 
     if "Rq_UserID" in session:
-        #players = ["test1","test2","test3"]
         vntLvls = appDataCom.get_M90kyoutu("権限レベル")
         vnt_fnc = request.args.get("fnc","")
         if vnt_fnc == "add":
@@ -690,4 +689,4 @@ def requestM70():
                      })
  
 if __name__ == "__main__":
-    app.run(debug=True, host='192.168.10.222', port=8080, threaded=True)  
+    app.run(debug=True, host='127.0.0.1', port=5000, threaded=True)  
