@@ -1,0 +1,147 @@
+{% extends 'basetmp.html' %}
+{% block main %}
+	 	 
+	 <div id="css_topicpath">
+	 <A href="{{ url_for ('login') }}">トップページ</A> ＞  {{vntGname}}
+	 </div>
+
+<FORM NAME="frmSubmit" ACTION="/eh10/eh{{ vntGid }}" METHOD="post" autocomplete="off" >
+
+	<TABLE width="445">
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【コード】
+	<INPUT ID="id_TantoCd" TYPE="text" NAME="Rq_TantoCd" SIZE="4" MAXLENGTH="6" VALUE="{{  res[1] }}" style="font-size: 30px;" tabindex="1">
+	<div>
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【名称】
+	<INPUT TYPE="text" NAME="Rq_TantoNm" SIZE="10" MAXLENGTH="40" VALUE="{{  res[2] }}" style="font-size: 30px;ime-mode:active" tabindex="2">
+	<div>
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【募集人コード】
+	<INPUT TYPE="text" NAME="Rq_BosyuCd" SIZE="10" MAXLENGTH="13" VALUE="{{  res[3] }}" style="font-size: 30px;ime-mode:active" tabindex="2">
+	<div>
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【権限コード】
+		<select name="Rq_KengenCd" style="font-size: 30px;">
+			{% for vntLvl in vntLvls %}
+				{% if vntLvl[0]==res[5] %}
+				<option value="{{ vntLvl[0] }}" selected style="font-size: 30px;">{{ vntLvl[1] }}</option>
+				{% else %}
+				<option value="{{ vntLvl[0] }}" style="font-size: 30px;">{{ vntLvl[1] }}</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+	<div>
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【備考】
+	<INPUT TYPE="text" NAME="Rq_TantoBikou" SIZE="10" MAXLENGTH="40" VALUE="{{  res[4] }}" style="font-size: 30px;ime-mode:active" tabindex="2">
+	<div>
+	</td>
+	</tr>
+
+	</TABLE>
+	
+	<p>
+	{% if vnt_fnc=='add' %}
+	<BUTTON TYPE="BUTTON" class="addbutton" onClick="add_submit();" tabindex="16">登録</BUTTON>
+	{% else %}
+	<BUTTON TYPE="BUTTON" class="updatebutton" onClick="update_submit();" tabindex="16">更新</BUTTON>
+	<BUTTON TYPE="BUTTON" class="deletebutton" onClick="delete_submit();" tabindex="16">削除</BUTTON>
+	{% endif %}
+	</p>
+	<input type="hidden" NAME="EID" VALUE="{{vnt_id}}">
+	<input type="hidden" NAME="Rq_fnc" VALUE="{{vnt_fnc}}">
+	<INPUT id="id_ItemZaiSuu" type="hidden" NAME="Rq_ItemZaiSuu" >
+</FORM>
+<SCRIPT LANGUAGE="JavaScript">
+	/////////////////////////////////////////////////////////////
+	//更新、キャンセルボタンイベント
+	/////////////////////////////////////////////////////////////
+	
+	function page_submit(){
+	
+		if (document.forms['frmSubmit'].Rq_ItemCd.value=="off"){
+				document.forms['frmSubmit'].Rq_fnc.value="off";
+				document.forms['frmSubmit'].submit();
+		}
+	}
+	
+	function add_submit(){
+		//alert("test");
+		if (confirm("登録してもよろしいですか？")){
+			//if ( jf_FormInputChk() != false ){
+				document.forms['frmSubmit'].Rq_fnc.value="add";
+				document.forms['frmSubmit'].submit();
+			//}
+		}
+	}
+
+	function update_submit(){
+		if (confirm("更新してもよろしいですか？")){
+			//if ( jf_FormInputChk() != false ){
+				document.forms['frmSubmit'].Rq_fnc.value="update";
+				document.forms['frmSubmit'].submit();
+			//}
+		}
+	}
+
+	function delete_submit(){
+		if (confirm("削除してもよろしいですか？")){
+			//if ( jf_FormInputChk() != false ){
+				document.forms['frmSubmit'].Rq_fnc.value="delete";
+				document.forms['frmSubmit'].submit();
+			//}
+		}
+	}
+
+	function reset_submit(){
+		document.forms['frmSubmit'].Rq_fnc.value="reset";
+		document.forms['frmSubmit'].Rq_ItemCd.value==""
+		document.forms['frmSubmit'].submit();
+	}
+
+	/////////////////////////////////////////////////////////////
+	//ファンクション定義
+	/////////////////////////////////////////////////////////////
+	
+	jQuery(function($){
+		$('#id_TantoCd').focus();
+
+		$('#id_TantoCd').change(function(){
+    		$.ajax({
+				  type: "POST",
+				  url: "/requestM80",
+				  data: {Rq_TantoCd : $(this).val()}
+			})
+			.then(
+				  function(response){
+						alert("このコードは登録済みです。\n　【ENT】ボタンを押して下さい");
+						$('#id_TantoCd').focus();
+						$('#id_TantoCd').val('');
+				  },
+				  function(){
+				  });
+		})
+	})
+	</script>
+<script src={{ url_for ('static', filename='js/jsfunc.js' )}}></script>
+
+{% endblock %}
