@@ -1,0 +1,9 @@
+<FONT id=small color="#CC66FF">{{pagelen}}件 page</FONT>
+
+{% for cnt in range(pageend) %}
+{% if cnt==pageorigin %}
+<FONT id=small color="#3399cc"><STRONG>{{ cnt +1 }}.</STRONG></FONT>
+{% else %}
+<FONT id=small color="#CCCCFF"><a href="eh{{ vntGid }}?pageorigin={{ cnt  }}">[{{ cnt +1 }}]</a></FONT>
+{% endif %}
+{% endfor %}
