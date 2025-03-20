@@ -15,7 +15,7 @@ CREATE TABLE T10SHIP(
        削除FLG                    SMALLINT NULL DEFAULT 0, 		
        IPADDR                   CHAR(15) NULL, 		
        GID                      CHAR(10) NULL		
-)
+);
 
 
 /* ------------------------------------- */
@@ -35,7 +35,7 @@ CREATE TABLE T20INSUU(
        削除FLG                    SMALLINT NULL DEFAULT 0, 		
        IPADDR                   CHAR(15) NULL, 		
        GID                      CHAR(10) NULL 		
-)
+);
 
 
 /* ------------------------------------- */
@@ -60,7 +60,7 @@ CREATE TABLE M70ITEM(
        削除FLG                    SMALLINT NULL DEFAULT 0, 		
        IPADDR                   CHAR(15) NULL, 		
        GID                      CHAR(10) NULL 		
-)
+);
 
 
 /* ------------------------------------- */
@@ -83,7 +83,7 @@ CREATE TABLE M80TANTO(
        IPADDR                   CHAR(15) NULL, 		
        GID                      CHAR(10) NULL, 		
        最終Login日                 DATETIME NULL 		
-)
+);
 
 
 /* ------------------------------------- */
@@ -106,7 +106,7 @@ CREATE TABLE M90共通(
        削除FLG                    SMALLINT NULL DEFAULT 0, 		
        IPADDR                   CHAR(15) NULL, 		
        GID                      CHAR(10) NULL 		
-)
+);
 
 
 
@@ -129,4 +129,4 @@ CREATE TABLE MA0画面制御(
        削除FLG                    SMALLINT NULL DEFAULT 0, 		
        IPADDR                   CHAR(15) NULL, 		
        GID                      CHAR(10) NULL 		
-)
+);
