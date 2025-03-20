@@ -1,0 +1,198 @@
+{% extends 'basetmp.html' %}
+{% block main %}
+	 	 
+	 <div id="css_topicpath">
+	 <A href="{{ url_for ('login') }}">トップページ</A> ＞  {{vntGname}}
+	 </div>
+	
+<FORM NAME="frmSubmit" ACTION="/eh10/eh{{vntGid}}" METHOD="post" autocomplete="off" >
+
+	<TABLE width="445">
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【アイテム】
+	<input id="id_ItemCd" type="text" NAME="Rq_ItemCd" SIZE="30" MAXLENGTH="6" VALUE="{{Rq_ItemCd}}" style="font-size: 36px;width: 4em;max-width: 100%;" onkeyup="setNextFocus(this)" tabindex="1">
+	<div id="messageItemCd"></div>
+	</div>
+	<SPAN ID="id_ItemNm" style="font-size: 32px"></SPAN>
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;">【棚番号】<SPAN ID="id_ItemTanaCd"></SPAN></div>
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	<div style="font-size: 30px;">【在庫数】<SPAN ID="id_ItemZaikoSuu"></SPAN></div>
+	</td>
+	</tr>
+	
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:green">【出庫数】
+	<input id="id_ItemSuu" type="number" NAME="Rq_ItemSuu" SIZE="8" MAXLENGTH="6" VALUE="" style="font-size: 36px;width: 4em;max-width: 100%;ime-mode:inactive"  onkeypress="if(event.keyCode==13){frmSubmit.elements['Rq_ItemRCd'].focus()};" tabindex="2">
+	</div>
+	</td>
+	</tr>
+
+	<tr>
+	<td>
+	<div style="font-size: 30px;color:blue">【再読込】
+	<input id="id_ItemRCd" type="tel" NAME="Rq_ItemRCd" SIZE="30" MAXLENGTH="6" VALUE="" style="font-size: 36px;width: 4em;max-width: 100%;" onkeyup="setNextFocus(this)" tabindex="3"></div>
+	<div style="font-size: 20px;color:red">バーコード再読込</div>
+	</td>
+	</tr>	
+	</table>
+
+	<input type="hidden" NAME="EADDCHK" VALUE="">
+	<INPUT id="id_ItemZaiSuu" type="hidden" NAME="Rq_ItemZaiSuu" >
+</FORM>
+<SCRIPT LANGUAGE="JavaScript">
+	/////////////////////////////////////////////////////////////
+	//フォームイニシャライズ
+	/////////////////////////////////////////////////////////////
+	//window.parent.frames('search').document.forms['frmSubmit'].elements('Rq_EigyouCD').focus();
+	//function onLoad(){
+	//	document.forms['frmSubmit'].elements('Rq_ItemCd').focus();
+	//}
+	/////////////////////////////////////////////////////////////
+	//更新、キャンセルボタンイベント
+	/////////////////////////////////////////////////////////////
+	
+	function add_submit(){
+		//alert("test");
+		//if (confirm("登録してもよろしいですか？")){
+			//if ( jf_FormInputChk() != false ){
+				document.forms['frmSubmit'].EADDCHK.value="add";
+				document.forms['frmSubmit'].submit();
+			//}
+		//}
+	}
+		
+	function reset_submit(){
+		document.forms['frmSubmit'].EADDCHK.value="reset";
+		document.forms['frmSubmit'].Rq_ItemCd.value==""
+		document.forms['frmSubmit'].submit();
+	}
+	
+	/////////////////////////////////////////////////////////////
+	//フォーム項目入力チェック
+	/////////////////////////////////////////////////////////////
+		
+	function setNextFocus(obj){
+		var vntItemSuu;
+		var vntItemZaiSuu;
+	
+		vntItemSuu = document.forms['frmSubmit'].Rq_ItemSuu.value;
+		vntItemZaiSuu = document.forms['frmSubmit'].Rq_ItemZaiSuu.value;
+	
+		if(obj.value.length >= obj.maxLength){
+			if (obj.id == "id_ItemRCd"){
+				if (document.forms['frmSubmit'].Rq_ItemCd.value == document.forms['frmSubmit'].Rq_ItemRCd.value && vntItemSuu.length!=0){
+					if (Number(vntItemSuu) > Number(vntItemZaiSuu)){
+						alert("出庫数が在庫数を超えてます。\n　【ENT】ボタンを押して下さい");
+						document.forms['frmSubmit'].elements['Rq_ItemSuu'].value= '';
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].value='';
+						document.forms['frmSubmit'].elements['Rq_ItemSuu'].focus();
+						return false;
+					} else {
+						add_submit();
+					}
+				} else {
+					if (vntItemSuu.length == 0){
+						alert("出庫数を入力して下さい。\n　【ENT】ボタンを押して下さい");
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].value='';
+						document.forms['frmSubmit'].elements['Rq_ItemSuu'].focus();
+						return false;
+					} else {
+						alert("アイテムコードが一致していません。\n　【ENT】ボタンを押して下さい");
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].focus();
+						document.forms['frmSubmit'].elements['Rq_ItemRCd'].value='';
+						return false;
+					}
+				}
+			}
+			var es = document.frmSubmit.elements;
+			for(var i=0;i<es.length;i++){
+				if(es[i] == obj){
+					es[i+1].focus();
+					break;
+				}
+			}
+		}
+	}
+	
+	/////////////////////////////////////////////////////////////
+	//ファンクション定義
+	/////////////////////////////////////////////////////////////
+	//共通ファンクションインクルード
+	
+	jQuery(function($){
+		$('#id_ItemCd').focus();
+		// アイテム名称
+		$('#id_ItemCd').change(function(){
+          			
+			$.ajax({
+    			type: "POST",
+    			url: "/requestM70",
+    			data: {Rq_ItemCd : $(this).val()}
+			})
+    		.then(
+				function(response){
+				
+					$('#id_ItemNm').text('');
+					$('#id_ItemZaiSuu').val('');
+					$('#id_ItemZaikoSuu').text('');
+					$('#id_ItemTanaCd').text('');
+					$('#id_ItemDelFlg').text('');
+					
+					$('#id_ItemNm').text(response.itemNm);
+					
+					if(response.itemDelFlg!=0){
+						$('#id_ItemCd').focus();
+						alert("このアイテムは使用期限切れです。\n　【ENT】ボタンを押して下さい");
+						$('#id_ItemCd').val(null);
+						//reset_submit();
+					} else {
+						$('#id_ItemNm').text(response.itemNm);
+						$('#id_ItemZaiSuu').val(response.itemSuu);
+						$('#id_ItemZaikoSuu').text(response.itemSuu);
+						$('#id_ItemTanaCd').text(response.itemTanaCd);
+						$('#id_ItemDelFlg').text(response.itemDelFlg);
+					}
+				},
+				function(){
+						$('#id_ItemCd').focus();
+						alert("該当するアイテムコードがありません。\n　【ENT】ボタンを押して下さい");
+						$('#id_ItemNm').text('');
+						$('#id_ItemZaiSuu').val('');
+						$('#id_ItemZaikoSuu').text('');
+						$('#id_ItemTanaCd').text('');
+						$('#id_ItemDelFlg').text('');
+			});
+		
+			//	
+			//	if(json.itemSession==[]){
+			//		alert("接続が切れました　再ログインが必要です。\n　【ENT】ボタンを押して下さい");
+			//		reset_submit();
+			//	}
+
+		})
+		
+		//$('#id_ItemSuu').change(function(){
+	    //	if ($.isNumeric($('#id_ItemSuu').val())) {
+		//		$('#messageItemSuu').text('');
+		//	} else {
+     	//      	$('#messageItemSuu').text('数値で入力してください。').css("color","red");
+		//		$('#id_ItemSuu').val(null).focus();
+		//		return false;
+    	//    }
+		//});
+	});
+</script>
+<script src={{ url_for ('static', filename='js/jsfunc.js' )}}></script>
+
+{% endblock %}
