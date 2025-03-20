@@ -17,9 +17,9 @@ INSERT INTO ma0画面制御(画面番号,画面名称,背景色,文字色,実行
 INSERT INTO ma0画面制御(画面番号,画面名称,背景色,文字色,実行pro,権限LV) VALUES ('10YU','共通ﾏｽﾀ','#FF4500','#000000','',9);
 
 
-INSERT INTO m80tanto(担当CD,担当名,募集人CD,権限CD) VALUES ('9999','管理者','00100ADMIN010',9);
-INSERT INTO m80tanto(担当CD,担当名,募集人CD,権限CD) VALUES ('300','出庫入庫担当者','00100LEADER10',3);
-INSERT INTO m80tanto(担当CD,担当名,募集人CD,権限CD) VALUES ('100','出庫担当者','00100STAFF010',1);
+INSERT INTO m80tanto(担当CD,担当名,ログインCD,権限CD) VALUES ('9999','管理者','00100ADMIN010',9);
+INSERT INTO m80tanto(担当CD,担当名,ログインCD,権限CD) VALUES ('300','出庫入庫担当者','00100LEADER10',3);
+INSERT INTO m80tanto(担当CD,担当名,ログインCD,権限CD) VALUES ('100','出庫担当者','00100STAFF010',1);
 
 
 INSERT INTO M70ITEM(アイテムCD,アイテム名,アイテム区分,アイテム在庫数,アイテム下限数,アイテム棚番号) VALUES ('230001','パンフレット1',10,100,10,'Ay4-x1');
