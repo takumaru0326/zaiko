@@ -1,0 +1,69 @@
+{% extends 'basetmp.html' %}
+{% block main %}
+     
+    <div id="my_contents">
+    <div id="mymain">
+    <h2>ログイン</h2>
+    <div id="mihon">
+     
+    <br>
+    <FORM NAME="frmSubmit" ACTION="/" METHOD="post" autocomplete="off" >
+    <table>
+        <tr>
+        <TD colspan="2"><FONT size="2">▼</FONT><FONT size="2">募集人コードを入力してください。</FONT></TD>
+        </tr>
+    
+        <tr >
+        <th>募集人コード</th>
+        <td><div class="logtxt"> 
+        <INPUT id="id_UserID" TYPE="text" NAME="Rq_UserID" SIZE="8" MAXLENGTH="5" VALUE=""  style="font-size: 32px" onkeyup="setNextFocus(this)" tabindex="1">
+        </div>	<!-- logtxt -->
+        </td>
+        </tr>
+    </table>
+    {{vntMessage}}
+    <INPUT TYPE="HIDDEN" NAME="EADDCHK" VALUE="">
+    </form> 
+    </div> <!-- mymihon E -->
+
+    </div>
+    </div>	<!-- main -->
+ 
+<SCRIPT LANGUAGE="JavaScript">
+/////////////////////////////////////////////////////////////
+//ファンクションボタンイベント
+/////////////////////////////////////////////////////////////
+function page_submit(){
+//	if ( jf_FormInputChk() != false ){
+        document.forms['frmSubmit'].EADDCHK.value="login";
+        document.forms['frmSubmit'].submit();
+//	}
+}
+
+/////////////////////////////////////////////////////////////
+//フォーム項目入力チェック
+/////////////////////////////////////////////////////////////
+function jf_FormInputChk(){
+//ユーザＩＤ
+//	if (jpf_FormInputChk("EUSERID","X",20,1,"ユーザＩＤ")==false){
+//		return false;
+}
+
+function setNextFocus(obj){
+  if(obj.value.length >= obj.maxLength){
+		page_submit();
+//		var es = document.frmSubmit.elements;
+//		for(var i=0;i<es.length;i++){
+//			if(es[i] == obj){
+//				es[i+1].focus();
+//				break;
+//			}
+//		}
+	}
+}
+
+jQuery(function($){
+	$('#id_UserID').focus();
+});
+</script>
+{% endblock %}	
