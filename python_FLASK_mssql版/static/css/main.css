@@ -1,0 +1,454 @@
+body {background: #B2DFDB}
+
+/* ページ全体の枠組み --------------------------------------------------------*/
+*{margin:0; padding:0;}
+body{background-color:WHITE;width:100%;}
+#my_body{width:100%;}
+#my_header{width:100%;border-bottom:2px solid #fff;background-color:#CCA8F0; height:60px;}
+#my_footer{width:100%;clear:both;background-color:#CCA8F0;border-top:2px solid #fff;text-align:center; padding:1em 0;}
+.contents p{margin: 0 auto;}
+ul {
+	list-style: disc;
+	margin: 0 0 2px .2px; /* [上][右][下][左]*/
+	padding:0 0 0 2px
+}
+ol {
+	list-style: decimal;
+	margin: 0 0 2px 0;
+	}
+li {
+	margin: 0 0px 4px 0em;
+	line-height: 120%;
+	list-style-type: square;
+	}
+p {
+padding-left:1em;
+text-indent:-1em;
+
+}
+#box_content {
+	width:750px;
+	float: left;
+
+}
+
+#box_left {
+	width:150px;
+	background-color: #f1f1fd;
+	font-size:13px;
+	float: left;
+}
+
+#box_mid {
+	width:590px;
+	background-color: #f1f1fd;
+	font-size:13px;
+	float: right;
+}
+
+
+/* ヘッダ --------------------------------------------------------------------*/
+#css_header{
+	}
+	
+#logo{
+	top:0;
+	left:0;
+	}
+		
+/* トピックパス --------------------------------------------------------------*/
+#css_topicpath{
+	margin:5px;
+	padding:1px;
+	background-color:#f1f1fd;
+	
+	border-color:#9b72cf;
+	border-width:1px;
+	border-style:solid;
+	
+	font-size:20pt;
+	color:BLACK;
+	}
+
+/* アナウンス */
+#announce {
+	width:770px;
+	background-color:yellow;
+	border-color:#9b72cf;
+	border-width:1px;
+	border-style:solid;
+	font-size:13pt; 
+	text-align:left; 
+	margin-right:25px; 
+	margin-top:0px;
+}
+
+
+/* MENU */
+#my_navigation{background-color:#fff;} /*右サイドメニュー #A8CCF0;*/
+#my_navigation{float:right; width:200px;}
+
+#my_contents{
+	padding:5px;
+	background-color:#FFF;	/*#F0F0A8右サイドメニュー*/
+	margin-right:200px;
+	}
+.contents_main{
+		font-size:12pt;color:BLACK;padding:1em;margin:1em
+		}
+#mynavi{padding:1em 0 2em 1em;border:1px solid #0ff;}
+
+#mynavicm{padding:1em 0 2em 1em;border:1px solid #0ff;}
+
+#mymain{padding:1em;border-left:1px solid #fff;}
+
+.mynavicont{padding:1em 0 2em 1em;border:1px solid #0ff;} /*外枠線 #0ff*/
+.menu	{	font-size:11pt;color:WHITE;width:170px;text-align:center;
+			padding:3px;margin:1px;
+		}
+		
+.mail_menu	{	font-size:11pt;color:WHITE;width:120px;text-align:left;
+			padding:3px;margin:1px;
+		}
+		
+.menu_footer {	font-size:10pt;color:BLACK;background-color:WHITE;width:170px;text-align:center;
+			padding:3px;margin:1px;
+		}
+.widemenu	{	font-size:12pt;color:WHITE;width:300px;text-align:center;
+			padding:10px;margin:10px;
+		}
+
+.smallmenu	{	font-size:12pt;color:WHITE;width:150px;text-align:center;
+			padding:5px;margin:3px;
+		}
+
+/* 投稿表示外枠 */
+.data_frame {
+	background-color:#FEF;
+		/*ul { list-style-type: circle; } */
+
+}
+.data_frame_space{
+	background-color:#FFF;
+}
+.data_frame td {
+	padding: 5px;
+	border-right: 1px solid #9900FF;
+	border-bottom: 1px solid #9900FF;
+	font-size:8pt;
+	color:BLACK;
+	background-color:WHITE;
+	width:80px;
+
+}
+/* 投稿一覧リンク */
+.list_pro {
+	font-size:12pt; 
+	color:RED;
+	text-align:left; 
+	margin-left:20px; 
+	margin-top:0px;
+}
+
+/* ページの先頭へ */
+.page_up {
+	font-size:8pt; 
+	text-align:right; 
+	margin-right:25px; 
+	margin-top:0px;
+}
+/* 説明文 */
+.caption {
+	border-color:#9b72cf;
+	border-width:1px;
+	border-style:solid;
+	font-size:12pt; 
+	text-align:left; 
+	margin-right:25px; 
+	margin-top:0px;
+}
+
+/* 検索条件 */
+.search {
+	border-color:#009900;     /*#3b72cf*/
+	border-width:1px;
+	border-style:solid;
+	text-align:left; 
+	padding: 5px;
+	margin-right:25px; 
+	margin-top:5px;
+
+}
+
+/* 注意 */
+.attention {
+	font-size:10pt; 
+	color:RED;
+	text-align:left; 
+	
+}
+
+/* コメント */
+.comments {
+	font-size:9pt; 
+	color:GREEN;
+	text-align:left; 
+	
+}
+
+
+/* 注意 */
+.moji_size24 {
+	font-size:24pt; 
+}
+
+/* フッタ --------------------------------------------------------------------*/
+/* トピックパス ページ下用----------------------------------------------------*/
+#css_topicpath_bottom{
+	background-color:#CCE6B3;
+	font-size:93%;
+	color:BLACK;
+	clear:both;
+	}
+
+#css_footer{
+	margin:5px;
+		padding:1px;
+		min-height:40px;
+		background:#FFFF00;
+		background-color: #f1f1fd;
+		border-color:#9b72cf;
+		border-width:1px;
+		border-style:solid;
+		font-size:11px;
+		text-align: center;
+		clear:both;
+
+}
+
+a:link     { /*font-size: 9pt;*/font-size: 90%; text-decoration:underline; color:BLUE ;}
+a:visited  { /*font-size: 9pt;*/font-size: 90%; text-decoration:underline; color:#9999ff ;}
+a:active   { /*font-size: 9pt;*/font-size: 90%; text-decoration:underline; color:#ff6699 ;}
+a:hover    { /*font-size: 9pt;*/font-size: 90%; text-decoration:underline; color:#ff6699 ;}
+
+img{
+/*	border-radius:15px; 角を円くする　IE 7は×なので使用しない */ 
+	border:none;
+	}
+#big { font-size: 30pt/*font-size: 100%*/}
+#mid { font-size: 25pt /*font-size: 90%*/}
+#small { font-size: 20pt /* font-size: 80%*/}
+
+H1{
+  color: #000099; /* 文字の色 */
+  padding-left: 10px; /* 左の余白 */
+  border-width: 0px 0px 2px 15px; /* 枠の幅 [上][右][下][左]*/
+  border-style: solid; /* 枠の種類 */
+  border-color: #9999ff; /* 枠の色 */
+  line-height: 100%; /* 行の高さ */
+}
+
+
+H2 {
+  color: #000099; /* 文字の色 */
+  padding-left: 10px; /* 左の余白 */
+  border-width: 0px 0px 2px 10px; /* 枠の幅 [上][右][下][左]*/
+  border-style: solid; /* 枠の種類 */
+  border-color: #9999ff; /* 枠の色 */
+  line-height: 100%; /* 行の高さ */
+}
+
+H3 {
+  color: #000099; /* 文字の色 */
+  padding-left: 10px; /* 左の余白 */
+  border-width: 0px 0px 2px 5px; /* 枠の幅 [上][右][下][左]*/
+  border-style: solid; /* 枠の種類 */
+  border-color: #9999ff; /* 枠の色 */
+  line-height: 100%; /* 行の高さ */
+}
+H4{
+   font-size:9pt;
+   color: #66CDAA;
+}
+HR{
+  color: #666633;
+  height: 1px;
+}
+
+DIV.buttonstyle{
+}
+   .Ldeletebutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 18pt;
+              background-color: #FF0000;
+              font-size:110%;width:160px;
+   }
+   .Lupdatebutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 18pt;
+              background-color: #FFFF99;
+              font-size:110%;width:160px;
+   }
+   .Laddbutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 18pt;
+              background-color: #66CCFF;
+              font-size:110%;width:160px;
+   } 
+   .Lsearthbutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 18pt;
+              background-color: #66CCFF;
+              font-size:110%;width:160px;
+   } 
+   .Lprintbutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 18pt;
+              background-color: green;
+              font-size:110%;width:160px;
+              color:white;
+   } 
+
+   .deletebutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 30pt;
+              background-color: #FF0000;
+              width:100px;
+   }
+   .updatebutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 30pt;
+              background-color: #FFFF99;
+              width:130px;
+   }
+   .addbutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 30pt;
+              background-color: #66CCFF;
+              width:130px;
+   } 
+   .sdeletebutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 10pt;
+              background-color: #FF0000;
+   }
+   .supdatebutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 10pt;
+              background-color: #FFFF99;
+   }
+   .saddbutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 10pt;
+              background-color: #66CCFF;
+   } 
+   .menubutton{
+              font-family: "ＭＳ Ｐゴシック";
+	          font-size: 10pt;
+              background-color: #00FF00;
+   } 
+   
+   
+
+
+table {
+	margin: 1em 0;
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-top: 1px solid gray;
+	border-left: 1px solid gray;
+	background: #fff;
+	}
+th {
+	padding: 5px;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	background: #FF9966 left;
+	color: #666;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	}
+td {
+	padding: 5px;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	font-size: 12px;
+	}
+/*■テーブル見本 */
+#mihon table {
+/*	width: 100%;*/
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-top: 1px solid #9900FF;
+	border-left: 1px solid #9900FF;
+	background: #fff;
+	}
+#mihon th {
+	padding: 5px;
+	border-right: 1px solid #9900FF;
+	border-bottom: 1px solid #9900FF;
+	background: #9966FF;
+	color: #fff;
+	font-family: "ＭＳ Ｐゴシック",sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	}
+#mihon td {
+	padding: 5px;
+	border-right: 1px solid #9900FF;
+	border-bottom: 1px solid #9900FF;
+	font-size: 16px;
+	}
+
+#mihon tr:hover {
+	background: #ffdddd;
+	}
+
+	
+/*■テーブル一覧表示用 */
+#css_table_list table {
+/*	width: 100%;*/
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-top: 1px solid #9900FF;
+	border-left: 1px solid #9900FF;
+	background: #fff;
+	}
+#css_table_list th {
+	padding: 5px;
+	border-right: 1px solid #9900FF;
+	border-bottom: 1px solid #9900FF;
+	background: #9966FF;
+	color: #fff;
+	font-family: "ＭＳ Ｐゴシック",sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	text-align: center;
+	}
+#css_table_list td {
+	padding: 5px;
+	border-right: 1px solid #9900FF;
+	border-bottom: 1px solid #9900FF;
+	font-size: 14px;
+	}	
+	
+
+TD.B1L {
+      background-color: #66DDCC;
+      color: #000000; 
+      }
+
+TD.B2L{
+      background-color: #FF9999;
+      color: #000000;  
+}
+
+TD.BDL {
+      background-color: #FFFF99;
+      color: #000000;
+      }
+      
+      
+
